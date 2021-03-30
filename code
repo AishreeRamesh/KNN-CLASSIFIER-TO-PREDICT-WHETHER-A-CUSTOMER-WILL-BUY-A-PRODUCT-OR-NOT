@@ -1,0 +1,26 @@
+import pandas as pd
+df=pd.read_csv("Social_Network_Ads.csv")
+df
+df.info()
+df.isnull().sum()
+df.describe()
+x=df.iloc[:,[2,3]].values
+x
+y=df.iloc[:,-1]
+y
+from sklearn.preprocessing import StandardScaler
+s=StandardScaler()
+x=s.fit_transform(x)
+x
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=3)
+from sklearn.neighbors import KNeighborsClassifier
+knn=KNeighborsClassifier()
+knn.fit(x_train,y_train)
+y_pred=knn.predict(x_test)
+y_pred
+y_test
+from sklearn import metricsaccuracy=metrics.accuracy_score(y_test,y_pred)
+accuracy
+test_pred=knn.predict([[20,20000]])
+test_pred[0]
